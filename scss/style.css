@@ -1,0 +1,15 @@
+body {
+  font-family: "DM Sans", sans-serif;
+  margin: 0;
+}
+body header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+}
+body h1 {
+  color: #901C1C;
+  margin-right: 100px;
+}/*# sourceMappingURL=style.css.map */

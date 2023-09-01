@@ -9,7 +9,7 @@
                 "country": "France",
                 "tagline": "Ceci est ma data test",
                 "price": 400,
-                "portrait": "account.png"
+                "portrait": "MimiKeel.png"
             },
             {
                 "name": "Autre data test",
@@ -18,7 +18,7 @@
                 "country": "UK",
                 "tagline": "Ceci est ma data test 2",
                 "price": 500,
-                "portrait": "account.png"
+                "portrait": "MarcelNikolic.png"
             },
         ]
         // et bien retourner le tableau photographers seulement une fois récupéré
