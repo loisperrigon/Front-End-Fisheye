@@ -31,6 +31,7 @@ body .photographer_section article {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  cursor: pointer;
 }
 body .photographer_section article img {
   height: 200px;
@@ -63,4 +64,19 @@ body .photographer_section article h5 {
 }
 body .photographer_section article:hover img {
   transform: scale(1.25);
+}
+body .focusPhotographe {
+  position: fixed;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  height: 500px;
+  width: 500px;
+  transform: translate(-50%, -50%);
+  background-color: White;
+  border-radius: 10px;
+  opacity: 0;
+}
+body .blur-background {
+  background-color: red;
 }/*# sourceMappingURL=index.css.map */
