@@ -1,11 +1,11 @@
 function photographerTemplate(data,index) {
-    const { name, portrait,city,country,tagline,price } = data;
+    const { name,id, portrait,city,country,tagline,price } = data;
 
     const picture = `assets/photographers/${portrait}`;
 
     function getUserCardDOM() {
         var article = document.createElement( 'article' );
-        
+        article.setAttribute("id",id);
         article.classList.add("photographe");   
         article.setAttribute("tabindex",index);
         const img = document.createElement( 'img' );

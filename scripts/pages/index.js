@@ -29,8 +29,14 @@
 
         const photographe = document.querySelectorAll(".photographe");
         tabPhotographe = photographe;
-        /*photographe.forEach((people) => {
-            people.addEventListener("mouseenter", () => lauchPhotographe(people));
+        photographe.forEach((people) => {
+          people.addEventListener("click", () => openPagePhotographe(people.getAttribute('id')));
+         
+        });
+
+        /*
+        photographe.forEach((people) => {
+            people.addEventListener("click", () => lauchPhotographe(people));
            
         });
 
@@ -38,6 +44,10 @@
             people.addEventListener("mouseleave", () => closePhotographe(people));
         });
         */
+        
+    }
+    function openPagePhotographe(photographe){
+      window.location.href="photographer.html?idPhotographe="+photographe;
     }
 
     async function init() {
@@ -167,6 +177,12 @@
                     curentIndex = tabPhotographe.length -1 ;
                 }
             break;
+
+            case 'Enter':
+              if(curentIndex !== -1 ){
+                openPagePhotographe(tabPhotographe[curentIndex].getAttribute('id'));
+              }
+            
         }
 
         closePhotographe(); 
