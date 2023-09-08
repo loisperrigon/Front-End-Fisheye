@@ -160,7 +160,7 @@
 
             case 'ArrowLeft':
                 if (curentIndex >  0) {
-                    // Lancez le photographe suivant
+                    // Lancez le photographe suivant.
                     curentIndex -= 1;             
                   } 
                 else{
