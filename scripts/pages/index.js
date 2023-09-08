@@ -1,84 +1,188 @@
 
     async function getPhotographers() {
-        // Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet, 
-        // mais il sera à remplacer avec une requête sur le fichier JSON en utilisant "fetch".
-        let photographers = [
-            {
-                "name": "Madatatest",
-                "id": 1,
-                "city": "Paris",
-                "country": "France",
-                "tagline": "Ceci est ma data test",
-                "price": 400,
-                "portrait": "MimiKeel.png"
-            },
-            {
-                "name": "Autredatatest",
-                "id": 2,
-                "city": "Londres",
-                "country": "UK",
-                "tagline": "Ceci est ma data test 2",
-                "price": 500,
-                "portrait": "MarcelNikolic.png"
-            },
-        ]
-        // et bien retourner le tableau photographers seulement une fois récupéré
-        return ({
-            photographers: [...photographers, ...photographers, ...photographers]})
-    }
+        const jsonPath = 'data/photographers.json';
+
+        try {
+            const response = await fetch(jsonPath);
+        
+            if (!response.ok) {
+              throw new Error('La requête a échoué avec un statut ' + response.status);
+            }
+            else{
+                const data = await response.json();
+                return data.photographers; // Retourne le tableau des photographes
+            }
+          } catch (error) {
+            console.error('Une erreur s\'est produite:', error);
+            return []; // Retourne un tableau vide en cas d'erreur
+          }
+        }
 
     async function displayData(photographers) {
-        const photographersSection = document.querySelector(".photographer_section");
-
+        var index=1;
         photographers.forEach((photographer) => {
-            const photographerModel = photographerTemplate(photographer);
+            const photographerModel = photographerTemplate(photographer,index);
             const userCardDOM = photographerModel.getUserCardDOM();
             photographersSection.appendChild(userCardDOM);
+            index += 1;
         });
 
         const photographe = document.querySelectorAll(".photographe");
-        photographe.forEach((people) => {
+        tabPhotographe = photographe;
+        /*photographe.forEach((people) => {
             people.addEventListener("mouseenter", () => lauchPhotographe(people));
+           
         });
 
         photographe.forEach((people) => {
             people.addEventListener("mouseleave", () => closePhotographe(people));
         });
-
+        */
     }
 
     async function init() {
-        // Récupère les datas des photographes
-        const { photographers } = await getPhotographers();
-        displayData(photographers);
+        try {
+            // Récupère les datas des photographes
+            const photographers = await getPhotographers();
+            displayData(photographers);
+          } catch (error) {
+            console.error('Une erreur s\'est produite lors de l\'initialisation:', error);
+          }
     }
 
 
     function lauchPhotographe(photographe){
+        const div = document.createElement( 'div' );
+        div.classList.add("conteneurTextPhotographe");
         const img = document.createElement( 'img' );
         img.setAttribute("src", photographe.querySelector("img").src)
-        const text = document.createTextNode(photographe.textContent);
+        const h2 = document.createElement('h2');
+        h2.textContent = photographe.querySelector('h2').textContent;
+        const h3 = document.createElement('h3');
+        h3.textContent = photographe.querySelector('h3').textContent;
+        const h4 = document.createElement('h4');
+        h4.textContent = photographe.querySelector('h4').textContent;
+        const h5 = document.createElement('h5');
+        h5.textContent = photographe.querySelector('h5').textContent;
+        div.appendChild(h2);
+        div.appendChild(h3);
+        div.appendChild(h4);
+        div.appendChild(h5);
         focusPhotographe.appendChild(img);
-        focusPhotographe.appendChild(text);
+        focusPhotographe.appendChild(div);
         focusPhotographe.style.opacity = 1;
-
-        document.body.classList.add("blur-background");
+        photographersSection.style.filter= 'blur(10px)';
+        
     }
 
-    function closePhotographe(photographe){
+    function closePhotographe(){
         while (focusPhotographe.firstChild) {
             focusPhotographe.removeChild(focusPhotographe.firstChild);
         }
         focusPhotographe.style.opacity = 0;
+        photographersSection.style.filter= 'none';
         
     }
+
     
-    init();
+    
+    document.addEventListener('keydown', function(event) {
+        switch (event.key) {
+
+            case 'Tab':
+                event.preventDefault();
+                if (event.shiftKey) {
+                    if (curentIndex > 0) {
+                        // Lancez le photographe suivant
+                        curentIndex -= 1;                         
+                      }
+                    else{
+                        curentIndex = tabPhotographe.length-1;
+                    }
+                      break
+                }
+                if (curentIndex < tabPhotographe.length-1) {
+                    // Lancez le photographe suivant
+                    curentIndex += 1;                   
+                  }
+                  else{
+                    curentIndex = 0; 
+                  }
+                break;
+
+            case 'ArrowUp':
+                if (curentIndex >= 3) {
+                    // Lancez le photographe suivant
+                    curentIndex -= 3;
+                  } 
+                else{
+                        i = 0 - curentIndex
+                        if (i === 0){
+                           curentIndex= tabPhotographe.length -3 ;
+                        }
+                        else if (i === -1){
+                            curentIndex= tabPhotographe.length -2 ;
+                        }
+                        else{
+                            curentIndex= tabPhotographe.length -1 ;
+                        }
+                }
+              break;
+            case 'ArrowDown':
+                if (curentIndex <= tabPhotographe.length-4) {
+                    // Lancez le photographe suivant
+                    curentIndex += 3;                 
+                  } 
+                  else{
+                     i = tabPhotographe.length - curentIndex
+                     if (i === 3){
+                        curentIndex= 0;
+                     }
+                     else if (i === 2){
+                        curentIndex= 1;
+                     }
+                     else{
+                        curentIndex= 2;
+                     }
+                }
+              break;
+            
+
+            case 'ArrowRight':
+                if (curentIndex <= tabPhotographe.length-2) {
+                    // Lancez le photographe suivant
+                    curentIndex += 1;                    
+                  }
+                else{
+                    curentIndex = 0 ;
+                } 
+            break;
+
+            case 'ArrowLeft':
+                if (curentIndex >  0) {
+                    // Lancez le photographe suivant
+                    curentIndex -= 1;             
+                  } 
+                else{
+                    curentIndex = tabPhotographe.length -1 ;
+                }
+            break;
+        }
+
+        closePhotographe(); 
+        lauchPhotographe(tabPhotographe[curentIndex]);
+
+      });
+  
+    const photographersSection = document.querySelector(".photographerSection");
     const focusPhotographe = document.querySelector(".focusPhotographe");
+    var curentIndex = -1;
+    var tabPhotographe;
+    init();
 
 
 
     
-
+    
 
     

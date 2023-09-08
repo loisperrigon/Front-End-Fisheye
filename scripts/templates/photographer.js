@@ -1,14 +1,17 @@
-function photographerTemplate(data) {
+function photographerTemplate(data,index) {
     const { name, portrait,city,country,tagline,price } = data;
 
     const picture = `assets/photographers/${portrait}`;
 
     function getUserCardDOM() {
         var article = document.createElement( 'article' );
-        article.classList.add("photographe");
+        
+        article.classList.add("photographe");   
+        article.setAttribute("tabindex",index);
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture)
-        const h2 = document.createElement( 'h2' );
+        img.setAttribute("alt", name)
+        const h2 = document.createElement( 'h2' );                          
         h2.textContent = name;
 
         const h3 = document.createElement('h3');
