@@ -45,11 +45,28 @@ async function getAllPhotographer() {
 
     function getPhotographer(idPhotographer,AllPhotographer){
       const photographer = AllPhotographer.filter(element => element.id === parseInt(idPhotographer));
-      return photographer;
+      return photographer[0]; //Car on recupere un tableau avec un seul element qui est lui meme un tableau
     }
 
     function createTemplateBaniere(photographer){
-      
+
+        const picture = `assets/photographers/${photographer.portrait}`;
+
+        const h2 = document.createElement( 'h2' );                          
+        h2.textContent = photographer.name;
+        const h3 = document.createElement('h3');
+        h3.textContent = photographer.city + " "+ photographer.country;
+        const h4 = document.createElement('h4');
+        h4.textContent = photographer.tagline;
+        sectionBaniereDescription.appendChild(h2);
+        sectionBaniereDescription.appendChild(h3);
+        sectionBaniereDescription.appendChild(h4);
+
+        const img = document.createElement( 'img' );
+        img.setAttribute("src", picture);
+        img.setAttribute("alt", photographer.name);   
+        sectionBaniere.appendChild(img);
+        
     }
     
 
@@ -64,7 +81,9 @@ async function getAllPhotographer() {
 
     }
 
-    const imageVideoSection = document.querySelector(".imageVideoSection");
+    const imageVideoSection = document.querySelector(".imageVideoSection")
+    const sectionBaniere = document.querySelector(".photograph-header")
+    const sectionBaniereDescription = document.querySelector(".photographe")
     const template = new TemplateFactory();
     init();
  

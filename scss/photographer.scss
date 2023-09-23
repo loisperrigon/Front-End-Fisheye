@@ -72,19 +72,17 @@ body{
 
              article{
 
-                height:200px;
+                height:350px;
                 display: flex;
                 flex-direction: column;
                 transition: transform 0.3s ease;
-                object-fit: cover;
+                margin: 50px;
                 
 
 
                 img{
-                    min-width: 100%; /* Limite la largeur de l'image à 100% de la largeur de son parent */
-                    max-width: 100%;
-                    max-height: 100% ;
-                    min-height: 100%; 
+                    width: 350px;
+                    height: 300px;;
                     object-fit: cover;
                     border-radius: 5px;
                  }
