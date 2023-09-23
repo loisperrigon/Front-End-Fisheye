@@ -32,4 +32,65 @@ function photographerTemplate(data,index) {
         return (article);
     }
     return { name, picture, getUserCardDOM }
+
+}
+
+class Template{
+
+    constructor() {
+        this.picture = `assets/images/`;
+        this.article = document.createElement('article');
+
+        this.title = document.createElement('span');
+        this.likes = document.createElement('span');
+        this.img = document.createElement( 'img' );
+    }
+
+    template(){
+         
+    }
+
+    render(section,idPhotographe,title,imageSrc,likes){
+        this.template();
+        this.picture += idPhotographe + "/"+imageSrc;
+        this.img.setAttribute("src", this.picture);
+        this.img.setAttribute("alt", title);
+        const div = document.createElement('div');
+        div.classList.add("titreLikes");   
+        this.title.textContent = title;
+        this.likes.textContent = likes;
+        div.appendChild(this.title);
+        div.appendChild(this.likes);
+        this.article.appendChild(this.img);
+        this.article.appendChild(div);
+        section.appendChild(this.article);
+        
+    }
+}
+
+class TemplatePhoto extends Template{
+    template(){
+        
+        this.article.classList.add("photo");                        
+       
+    }
+
+}
+class TemplateVideo extends Template{
+    template(){
+        this.article.classList.add("video");               
+    }
+}
+
+class TemplateFactory{
+    createTemplate(type){
+        switch(type){
+            case "video":
+                return new TemplateVideo();
+            case "photo":
+                return new TemplatePhoto();
+            default:
+                throw new Error("Type de modèle inconnu.");
+        }
+    }
 }

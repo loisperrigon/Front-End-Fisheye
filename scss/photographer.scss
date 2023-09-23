@@ -1,0 +1,133 @@
+@import 'style.scss';
+
+
+body{
+    margin:0 100px;
+
+    header{
+        img{
+            width: 200px;
+            height: 50px;
+        }
+    }
+
+    #main{
+
+        .photograph-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #FAFAFA;
+            height: 300px;
+            margin-bottom: 50px;
+
+            padding: 0 20px;
+                
+            h2 {
+                white-space: nowrap;
+                color: $secondary-color-font;
+                text-align: center;
+                font-size: 64px;
+                margin:20px 0px 0px 0px;
+
+            }
+
+            h3{
+                text-align: center;
+                font-size: 24px;
+                color: $primary-color;
+                margin:0;
+            }
+
+            h4{
+                text-align: center;
+                font-size: 18px;
+                margin:0;
+            }
+
+            img{
+                width: 200px;
+                height: 200px;
+                border-radius: 100%;
+            }
+
+               .contact_button {
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: $primary-color-font;
+                    padding: 11px;
+                    width: 170px;
+                    height: 70px;
+                    border: none;
+                    background-color: $primary-color;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+           }
+        .imageVideoSection{
+           display: grid;
+           grid-template-columns: 1fr 1fr 1fr;
+           gap: 70px;
+           margin: 50px 0px;
+
+             article{
+
+                height:200px;
+                display: flex;
+                flex-direction: column;
+                transition: transform 0.3s ease;
+                object-fit: cover;
+                
+
+
+                img{
+                    min-width: 100%; /* Limite la largeur de l'image à 100% de la largeur de son parent */
+                    max-width: 100%;
+                    max-height: 100% ;
+                    min-height: 100%; 
+                    object-fit: cover;
+                    border-radius: 5px;
+                 }
+
+                 .titreLikes{
+                    display: flex;
+                    justify-content: space-between;
+                    color: $primary-color;
+                    padding-top: 5px;
+                    background-color: #FAFAFA;
+                 }
+
+             }
+            article:hover{
+                transform: scale(1.25);
+            }
+
+
+
+           
+
+
+        }
+
+        #contact_modal {
+
+            display: none;
+
+            .modal {
+                border-radius: 5px;
+                background-color: $tertiaire-color;
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                padding: 35px;
+                margin: auto;
+
+             }
+
+            
+        }
+    }
+
+}

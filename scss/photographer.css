@@ -1,0 +1,115 @@
+@charset "UTF-8";
+body {
+  font-family: "DM Sans", sans-serif;
+  margin: 0;
+}
+body header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+}
+body h1 {
+  color: #901C1C;
+  margin-right: 100px;
+}
+
+body {
+  margin: 0 100px;
+}
+body header img {
+  width: 200px;
+  height: 50px;
+}
+body #main .photograph-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #FAFAFA;
+  height: 300px;
+  margin-bottom: 50px;
+  padding: 0 20px;
+}
+body #main .photograph-header h2 {
+  white-space: nowrap;
+  color: #D3573C;
+  text-align: center;
+  font-size: 64px;
+  margin: 20px 0px 0px 0px;
+}
+body #main .photograph-header h3 {
+  text-align: center;
+  font-size: 24px;
+  color: #901C1C;
+  margin: 0;
+}
+body #main .photograph-header h4 {
+  text-align: center;
+  font-size: 18px;
+  margin: 0;
+}
+body #main .photograph-header img {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+}
+body #main .photograph-header .contact_button {
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFFFFF;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  border: none;
+  background-color: #901C1C;
+  border-radius: 5px;
+  cursor: pointer;
+}
+body #main .imageVideoSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 70px;
+  margin: 50px 0px;
+}
+body #main .imageVideoSection article {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body #main .imageVideoSection article img {
+  min-width: 100%; /* Limite la largeur de l'image à 100% de la largeur de son parent */
+  max-width: 100%;
+  max-height: 100%;
+  min-height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+}
+body #main .imageVideoSection article .titreLikes {
+  display: flex;
+  justify-content: space-between;
+  color: #901C1C;
+  padding-top: 5px;
+  background-color: #FAFAFA;
+}
+body #main .imageVideoSection article:hover {
+  transform: scale(1.25);
+}
+body #main #contact_modal {
+  display: none;
+}
+body #main #contact_modal .modal {
+  border-radius: 5px;
+  background-color: #DB8876;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 35px;
+  margin: auto;
+}/*# sourceMappingURL=photographer.css.map */

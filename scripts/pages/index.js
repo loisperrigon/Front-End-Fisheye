@@ -46,6 +46,7 @@
         */
         
     }
+    
     function openPagePhotographe(photographe){
       window.location.href="photographer.html?idPhotographe="+photographe;
     }
@@ -185,7 +186,8 @@
             
         }
 
-        closePhotographe(); 
+        closePhotographe();
+        tabPhotographe[curentIndex].focus(); 
         lauchPhotographe(tabPhotographe[curentIndex]);
 
       });
