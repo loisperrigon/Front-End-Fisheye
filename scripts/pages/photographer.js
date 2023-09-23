@@ -77,13 +77,12 @@ async function getAllPhotographer() {
         createTemplateBaniere(photographer);
         var imageVideoPhotographer = getImageVideoPhotographer(idPhotographer,data.media);
         createTemplate(imageVideoPhotographer);
-
-
+    
     }
+
 
     const imageVideoSection = document.querySelector(".imageVideoSection")
     const sectionBaniere = document.querySelector(".photograph-header")
     const sectionBaniereDescription = document.querySelector(".photographe")
     const template = new TemplateFactory();
     init();
- 

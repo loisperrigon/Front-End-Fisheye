@@ -50,19 +50,39 @@ class Template{
          
     }
 
+    addEventclick(element,likes){
+
+        element.addEventListener('click', function() {
+            likes.textContent = parseInt(likes.textContent)+1;
+          });
+
+    }
+    
+
     render(section,idPhotographe,title,imageSrc,likes){
         this.template();
         this.picture += idPhotographe + "/"+imageSrc;
         this.img.setAttribute("src", this.picture);
         this.img.setAttribute("alt", title);
-        const div = document.createElement('div');
-        div.classList.add("titreLikes");   
+        const divTitreLikes = document.createElement('div');
+        divTitreLikes.classList.add("titreLikes");   
+        const divLikes = document.createElement('div');
+        divLikes.classList.add("likes");   
+
         this.title.textContent = title;
         this.likes.textContent = likes;
-        div.appendChild(this.title);
-        div.appendChild(this.likes);
+        divTitreLikes.appendChild(this.title);
+        divLikes.appendChild(this.likes);
+        const coeur = document.createElement('i');
+        coeur.classList.add("fa-solid", "fa-heart");   
+        divLikes.appendChild(coeur);
+        this.addEventclick(divLikes,this.likes)
+
+
+
+        divTitreLikes.appendChild(divLikes);
         this.article.appendChild(this.img);
-        this.article.appendChild(div);
+        this.article.appendChild(divTitreLikes);
         section.appendChild(this.article);
         
     }
