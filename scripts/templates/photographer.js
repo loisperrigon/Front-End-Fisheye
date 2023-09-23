@@ -40,10 +40,10 @@ class Template{
     constructor() {
         this.picture = `assets/images/`;
         this.article = document.createElement('article');
+        this.videoImage = "";
 
         this.title = document.createElement('span');
         this.likes = document.createElement('span');
-        this.img = document.createElement( 'img' );
     }
 
     template(){
@@ -61,9 +61,13 @@ class Template{
 
     render(section,idPhotographe,title,imageSrc,likes){
         this.template();
+
+        
+        
         this.picture += idPhotographe + "/"+imageSrc;
-        this.img.setAttribute("src", this.picture);
-        this.img.setAttribute("alt", title);
+        console.log(this.picture)
+        this.videoImage.setAttribute("src", this.picture);
+        this.videoImage.setAttribute("alt", title);
         const divTitreLikes = document.createElement('div');
         divTitreLikes.classList.add("titreLikes");   
         const divLikes = document.createElement('div');
@@ -81,7 +85,7 @@ class Template{
 
 
         divTitreLikes.appendChild(divLikes);
-        this.article.appendChild(this.img);
+        this.article.appendChild(this.videoImage);
         this.article.appendChild(divTitreLikes);
         section.appendChild(this.article);
         
@@ -90,15 +94,23 @@ class Template{
 
 class TemplatePhoto extends Template{
     template(){
-        
+        this.videoImage = document.createElement('img');
         this.article.classList.add("photo");                        
        
     }
 
 }
 class TemplateVideo extends Template{
+
     template(){
-        this.article.classList.add("video");               
+        
+        this.videoImage = document.createElement('video');
+        this.article.classList.add("video");   
+        this.videoImage.type = 'video/mp4'; // Spécifiez le type MIME du fichier vidéo
+        this.videoImage.controls = true
+        this.videoImage.autoplay = true; 
+        this.videoImage.loop = true;
+        this.article.appendChild(this.videoImage);
     }
 }
 
