@@ -18,7 +18,7 @@
         </div>
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
-      <div>
+      <div class="filtre">
         <span>Trier par</span>
         <div>
           <button id="dropdownButton" aria-haspopup="listbox" aria-expanded="false" onclick="toggleListbox()">Ouvrir la liste</button>
@@ -30,6 +30,23 @@
         </div>
       </div>
       <div class="imageVideoSection">
+      </div>
+      <div class="imageVideoFullScreen">
+        <div class="imageVideoFullScreenNav">
+          <div class="flecheGauche">
+            <i class="fa-solid fa-arrow-left"></i>
+          </div>
+          <div class="imageVideoFull"></div>
+          <div class="flecheDroite">
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <div class="close">
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+        </div>
+        <div class="imageVideoFullScreenTitle">
+          <h1 class="title"></h1>
+        </div>
       </div>
     </main>
     <div id="contact_modal">
@@ -46,8 +63,10 @@
 				</form>
 			</div>
 		</div>
-    <script src="/scripts/templates/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/utils/visioPhoto.js"></script>
+    <script src="/scripts/templates/photographer.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
+
   </body>
 </html>

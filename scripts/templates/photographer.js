@@ -1,3 +1,5 @@
+
+
 function photographerTemplate(data,index) {
     const { name,id, portrait,city,country,tagline,price } = data;
 
@@ -50,19 +52,27 @@ class Template{
          
     }
 
-    addEventclick(element,likes){
+    addEventlikesclick(element,likes){
 
         element.addEventListener('click', function() {
             likes.textContent = parseInt(likes.textContent)+1;
           });
 
     }
+
+    addEventClick(element,title){
+        element.addEventListener('click', function() {
+            element.focus(); 
+            var index = document.activeElement.tabIndex; //on recupere l'index pour la navigation 
+            openVisioPhoto(element.cloneNode(true),title, index); // clone pour eviter les conflit true pour cloner également les enfants
+          });
+    }
     
 
-    render(section,idPhotographe,title,imageSrc,likes){
+    render(section,idPhotographe,title,imageSrc,likes,index){
         this.template();
-
-        
+        this.article.classList.add("videoPhoto");  
+        this.article.setAttribute("tabindex",index);
         
         this.picture += idPhotographe + "/"+imageSrc;
         console.log(this.picture)
@@ -72,7 +82,7 @@ class Template{
         divTitreLikes.classList.add("titreLikes");   
         const divLikes = document.createElement('div');
         divLikes.classList.add("likes");   
-
+  
         this.title.textContent = title;
         this.likes.textContent = likes;
         divTitreLikes.appendChild(this.title);
@@ -80,8 +90,8 @@ class Template{
         const coeur = document.createElement('i');
         coeur.classList.add("fa-solid", "fa-heart");   
         divLikes.appendChild(coeur);
-        this.addEventclick(divLikes,this.likes)
-
+        this.addEventlikesclick(divLikes,this.likes);
+        this.addEventClick(this.videoImage,title);
 
 
         divTitreLikes.appendChild(divLikes);
@@ -89,13 +99,13 @@ class Template{
         this.article.appendChild(divTitreLikes);
         section.appendChild(this.article);
         
+        
     }
 }
 
 class TemplatePhoto extends Template{
     template(){
-        this.videoImage = document.createElement('img');
-        this.article.classList.add("photo");                        
+        this.videoImage = document.createElement('img');                   
        
     }
 
@@ -103,9 +113,7 @@ class TemplatePhoto extends Template{
 class TemplateVideo extends Template{
 
     template(){
-        
         this.videoImage = document.createElement('video');
-        this.article.classList.add("video");   
         this.videoImage.type = 'video/mp4'; // Spécifiez le type MIME du fichier vidéo
         this.videoImage.controls = true
         this.videoImage.autoplay = true; 

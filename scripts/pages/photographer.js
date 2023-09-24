@@ -30,14 +30,17 @@ async function getAllPhotographer() {
     }
 
     function createTemplate(imageVideoPhotographer){
+      var index = 0;
         imageVideoPhotographer.forEach((imagephoto) => {
             if (imagephoto.image) {
                 const templatePhoto = template.createTemplate("photo");
-                templatePhoto.render(imageVideoSection,imagephoto.photographerId,imagephoto.title,imagephoto.image,imagephoto.likes);
+                templatePhoto.render(imageVideoSection,imagephoto.photographerId,imagephoto.title,imagephoto.image,imagephoto.likes,index);
               } else if (imagephoto.video) {
                 const templateVideo = template.createTemplate("video");
-                templateVideo.render(imageVideoSection,imagephoto.photographerId,imagephoto.title,imagephoto.video,imagephoto.likes);
+                templateVideo.render(imageVideoSection,imagephoto.photographerId,imagephoto.title,imagephoto.video,imagephoto.likes,index);
               }
+
+              index += 1;
         }
         );
 
