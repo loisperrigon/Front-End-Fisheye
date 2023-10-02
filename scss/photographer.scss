@@ -20,7 +20,7 @@ body {
             background-color: #FAFAFA;
             height: 300px;
             margin-bottom: 50px;
-
+            width: 100%;
             padding: 0 20px;
 
             .photographe {
@@ -29,6 +29,7 @@ body {
                 grid-template-columns: 1fr 1fr 1fr;
                 align-items: center;
                 justify-items: center;
+                width: 100%;
 
 
                 h2 {

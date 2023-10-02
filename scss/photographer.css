@@ -29,6 +29,7 @@ body #main .photograph-header {
   background-color: #FAFAFA;
   height: 300px;
   margin-bottom: 50px;
+  width: 100%;
   padding: 0 20px;
 }
 body #main .photograph-header .photographe {
@@ -36,6 +37,7 @@ body #main .photograph-header .photographe {
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   justify-items: center;
+  width: 100%;
 }
 body #main .photograph-header .photographe h2 {
   white-space: nowrap;

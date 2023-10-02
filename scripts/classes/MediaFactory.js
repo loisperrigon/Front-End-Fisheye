@@ -1,11 +1,9 @@
-
 class Template {
 
     constructor() {
-        this.picture = `assets/images/`;
+        this.mediasRoot = `assets/images/`;
         this.article = document.createElement('article');
         this.videoImage = "";
-
         this.title = document.createElement('span');
         this.likes = document.createElement('span');
     }
@@ -14,76 +12,73 @@ class Template {
 
     }
 
-    addEventlikesclick(element, likes) {
+    addEventlikesclick(divLikes, textContentLikes, element) {
 
-        element.addEventListener('click', function () {
-            likes.textContent = parseInt(likes.textContent) + 1;
+        divLikes.addEventListener('click', function () {
+            element.likes += 1;
+            textContentLikes.textContent = element.likes;
         });
 
     }
 
-    addEventClick(element, title, index) {
-        element.addEventListener('click', function () {
-            console.log(index);
-            openVisioPhoto(element.cloneNode(true), title, index); // clone pour eviter les conflit true pour cloner également les enfants
+    addEventClick(videoImage, element) {
+        videoImage.addEventListener('click', function () {
+            openVisioPhoto(videoImage.cloneNode(true), element.title, element.index); // clone pour eviter les conflit true pour cloner également les enfants
         });
     }
 
-
-
-
-    render(section, idPhotographe, title, imageSrc, likes, index) {
-        this.template();
+    render(element) {
+        this.template(element);
         this.article.classList.add("videoPhoto");
-        this.article.setAttribute("tabindex", index);
-        this.picture += idPhotographe + "/" + imageSrc;
-        this.videoImage.setAttribute("src", this.picture);
-        this.videoImage.setAttribute("alt", title);
+        this.article.setAttribute("tabindex", element.index);
+        this.videoImage.setAttribute("src", this.mediasRoot);
+        this.videoImage.setAttribute("alt", element.title);
         const divTitreLikes = document.createElement('div');
         divTitreLikes.classList.add("titreLikes");
         const divLikes = document.createElement('div');
         divLikes.classList.add("likes");
 
-        this.title.textContent = title;
-        this.likes.textContent = likes;
+        this.title.textContent = element.title;
+        this.likes.textContent = element.likes;
         divTitreLikes.appendChild(this.title);
         divLikes.appendChild(this.likes);
         const coeur = document.createElement('i');
         coeur.classList.add("fa-solid", "fa-heart");
         divLikes.appendChild(coeur);
-        this.addEventlikesclick(divLikes, this.likes);
-        this.addEventClick(this.videoImage, title, index);
-
-
+        this.addEventlikesclick(divLikes, this.likes, element);
+        this.addEventClick(this.videoImage, element);
         divTitreLikes.appendChild(divLikes);
         this.article.appendChild(this.videoImage);
         this.article.appendChild(divTitreLikes);
-        section.appendChild(this.article);
 
 
+        return this.article;
     }
 }
 
 class TemplatePhoto extends Template {
-    template() {
+    template(element) {
         this.videoImage = document.createElement('img');
+        this.mediasRoot += element.photographerId + "/" + element.image;
 
     }
 
 }
 class TemplateVideo extends Template {
 
-    template() {
+    template(element) {
         this.videoImage = document.createElement('video');
         this.videoImage.type = 'video/mp4'; // Spécifiez le type MIME du fichier vidéo
         this.videoImage.controls = true
         this.videoImage.autoplay = true;
         this.videoImage.loop = true;
         this.article.appendChild(this.videoImage);
+        this.mediasRoot += element.photographerId + "/" + element.video;
+
     }
 }
 
-class TemplateFactory {
+class MediaFactory {
     createMedia(type) {
         switch (type) {
             case "video":
