@@ -2,20 +2,20 @@
 
 
 
-body{
+body {
 
 
     .logo {
         height: 50px;
         margin-left: 100px;
     }
-    
+
     .photographerSection {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 70px;
         margin: 100px 0px;
-    
+
         article {
 
             justify-self: center;
@@ -24,7 +24,7 @@ body{
             align-items: center;
             flex-direction: column;
             cursor: pointer;
-    
+
             img {
                 height: 200px;
                 width: 200px;
@@ -40,47 +40,47 @@ body{
                 color: $secondary-color-font;
                 text-align: center;
                 font-size: 36px;
-                margin:20px 0px 0px 0px;
+                margin: 20px 0px 0px 0px;
 
             }
 
-            h3{
+            h3 {
                 text-align: center;
                 font-size: 13px;
                 color: $primary-color;
-                margin:0;
+                margin: 0;
             }
 
-            h4{
+            h4 {
                 text-align: center;
                 font-size: 10px;
-                margin:0;
+                margin: 0;
             }
 
-            h5{
+            h5 {
                 text-align: center;
                 font-size: 9px;
                 color: $quartiere-color-font;
-                margin:0;
+                margin: 0;
             }
 
         }
 
-        article:hover{
-            
+        article:hover {
 
-            img{
+
+            img {
                 transform: scale(1.25);
             }
 
         }
     }
 
-    .focusPhotographe{
+    .focusPhotographe {
         position: fixed;
         display: flex;
         z-index: 2;
-        top:50%;
+        top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         background-color: White;
@@ -92,76 +92,89 @@ body{
         align-items: center;
         justify-content: center;
 
-        img{
-            border-radius: 100%;
-            height: 400px;
-            width: 400px;
-            object-fit: cover;
-            animation: scale 1.5s ease-in-out;
-            box-shadow: 0px 0px 50px rgba(0, 0, 0, 1);
-            object-fit: cover;
-           
+        div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            img {
+                border-radius: 100%;
+                height: 400px;
+                width: 400px;
+                object-fit: cover;
+                animation: scale 1.5s ease-in-out;
+                box-shadow: 0px 0px 50px rgba(0, 0, 0, 1);
+                object-fit: cover;
+
+            }
+
+            .conteneurTextPhotographe {
+                background-color: white;
+                border-radius: 15px;
+                padding: 20px;
+                margin: 20px;
+                animation: slide-in 2s forwards;
+                box-shadow: 0px 0px 50px rgba(0, 0, 0, 1);
+
+                h2 {
+                    white-space: nowrap;
+                    color: $secondary-color-font;
+                    text-align: center;
+                    font-size: 72px;
+                    margin: 0px 0px 0px 0px;
+                }
+
+                h3 {
+                    text-align: center;
+                    font-size: 26px;
+                    color: $primary-color;
+                    margin: 0;
+                }
+
+                h4 {
+                    text-align: center;
+                    font-size: 20px;
+                    margin: 0;
+                }
+
+                h5 {
+                    text-align: center;
+                    font-size: 18px;
+                    color: $quartiere-color-font;
+                    margin: 0;
+                }
+            }
+
         }
 
-        .conteneurTextPhotographe{
-            background-color: white;
-            border-radius: 15px;
-            padding:20px;
-            margin: 20px;
-            animation: slide-in 2s forwards; 
-            box-shadow: 0px 0px 50px rgba(0, 0, 0, 1);
 
-            h2 {
-                white-space: nowrap;
-                color: $secondary-color-font;
-                text-align: center;
-                font-size: 72px;
-                margin:0px 0px 0px 0px;
-            }
-    
-            h3{
-                text-align: center;
-                font-size: 26px;
-                color: $primary-color;
-                margin:0;
-            }
-    
-            h4{
-                text-align: center;
-                font-size: 20px;
-                margin:0;
-            }
-    
-            h5{
-                text-align: center;
-                font-size: 18px;
-                color: $quartiere-color-font;
-                margin:0;
-            }
-        }
 
 
     }
-    
+
 
 }
 
 @keyframes scale {
     from {
-      width: 200px;
-      height: 200px;
+        width: 200px;
+        height: 200px;
     }
-    to {
-      width: 400px;
-      height: 400px;
-    }
-  }
 
-  @keyframes slide-in {
-    from {
-      transform: translateY(80%); /* Déplacer depuis la droite (en dehors de la vue) */
-    }
     to {
-      transform: translateY(0); /* Déplacer jusqu'à sa position finale (visible) */
+        width: 400px;
+        height: 400px;
     }
-  }
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateY(80%);
+        /* Déplacer depuis la droite (en dehors de la vue) */
+    }
+
+    to {
+        transform: translateY(0);
+        /* Déplacer jusqu'à sa position finale (visible) */
+    }
+}

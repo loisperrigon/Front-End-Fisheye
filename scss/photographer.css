@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   font-family: "DM Sans", sans-serif;
   margin: 0;
@@ -22,8 +23,7 @@ body header img {
   height: 50px;
 }
 body #main .photograph-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
   align-items: center;
   justify-items: center;
   background-color: #FAFAFA;
@@ -31,30 +31,36 @@ body #main .photograph-header {
   margin-bottom: 50px;
   padding: 0 20px;
 }
-body #main .photograph-header h2 {
+body #main .photograph-header .photographe {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+body #main .photograph-header .photographe h2 {
   white-space: nowrap;
   color: #D3573C;
   text-align: center;
   font-size: 64px;
   margin: 20px 0px 0px 0px;
 }
-body #main .photograph-header h3 {
+body #main .photograph-header .photographe h3 {
   text-align: center;
   font-size: 24px;
   color: #901C1C;
   margin: 0;
 }
-body #main .photograph-header h4 {
+body #main .photograph-header .photographe h4 {
   text-align: center;
   font-size: 18px;
   margin: 0;
 }
-body #main .photograph-header img {
+body #main .photograph-header .photographe img {
   width: 200px;
   height: 200px;
   border-radius: 100%;
 }
-body #main .photograph-header .contact_button {
+body #main .photograph-header .photographe .contact_button {
   font-size: 20px;
   font-weight: bold;
   color: #FFFFFF;
@@ -66,8 +72,22 @@ body #main .photograph-header .contact_button {
   border-radius: 5px;
   cursor: pointer;
 }
-body #main .filtre {
+body #main .divFiltres {
   font-weight: bold;
+}
+body #main .divFiltres .filtres {
+  background-color: #901C1C;
+  /* Couleur de fond rouge */
+  color: white;
+  /* Texte en blanc */
+  padding: 8px;
+  /* Marge intérieure pour un aspect esthétique */
+  border: none;
+  /* Supprimez la bordure par défaut */
+  border-radius: 4px;
+  /* Ajoutez des coins arrondis */
+  font-size: 16px;
+  /* Taille de police */
 }
 body #main .imageVideoSection {
   display: grid;
@@ -85,7 +105,8 @@ body #main .imageVideoSection article {
   box-sizing: border-box;
   cursor: pointer;
 }
-body #main .imageVideoSection article img, body #main .imageVideoSection article video {
+body #main .imageVideoSection article img,
+body #main .imageVideoSection article video {
   width: 100%;
   height: 300px;
   -o-object-fit: cover;
@@ -98,6 +119,7 @@ body #main .imageVideoSection article .titreLikes {
   color: #901C1C;
   padding: 5px;
   background-color: white;
+  border-radius: 5px;
 }
 body #main .imageVideoSection article .titreLikes .likes span {
   margin: 10px;
@@ -132,13 +154,25 @@ body #main .imageVideoFullScreen .imageVideoFullScreenNav .close {
   right: 20px;
   cursor: pointer;
 }
-body #main .imageVideoFullScreen .imageVideoFullScreenNav img, body #main .imageVideoFullScreen .imageVideoFullScreenNav video {
+body #main .imageVideoFullScreen .imageVideoFullScreenNav img,
+body #main .imageVideoFullScreen .imageVideoFullScreenNav video {
   margin: 25px;
   width: 100%;
   height: 850px;
   border-radius: 5px;
   -o-object-fit: cover;
      object-fit: cover;
+}
+body #main .imageVideoFullScreen .imageVideoFullScreenNav .close,
+body #main .imageVideoFullScreen .imageVideoFullScreenNav .flecheDroite,
+body #main .imageVideoFullScreen .imageVideoFullScreenNav .flecheGauche {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+body #main .imageVideoFullScreen .imageVideoFullScreenNav .close:hover,
+body #main .imageVideoFullScreen .imageVideoFullScreenNav .flecheDroite:hover,
+body #main .imageVideoFullScreen .imageVideoFullScreenNav .flecheGauche:hover {
+  transform: scale(1.5);
 }
 body #main .imageVideoFullScreen .title {
   margin: 0;
