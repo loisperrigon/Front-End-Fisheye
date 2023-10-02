@@ -1,3 +1,7 @@
+import LightBox from './LightBox.js';
+
+const lightBox = new LightBox();
+
 class Template {
 
     constructor() {
@@ -23,7 +27,8 @@ class Template {
 
     addEventClick(videoImage, element) {
         videoImage.addEventListener('click', function () {
-            openVisioPhoto(videoImage.cloneNode(true), element.title, element.index); // clone pour eviter les conflit true pour cloner également les enfants
+            lightBox.initLightBox(videoImage.cloneNode(true), element.title, element.index)
+            lightBox.affichageLightBox();
         });
     }
 
@@ -78,7 +83,7 @@ class TemplateVideo extends Template {
     }
 }
 
-class MediaFactory {
+export default class MediaFactory {
     createMedia(type) {
         switch (type) {
             case "video":
@@ -90,3 +95,4 @@ class MediaFactory {
         }
     }
 }
+

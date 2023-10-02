@@ -1,11 +1,9 @@
+import MediaFactory from '../classes/MediaFactory.js';
 
 const select = document.querySelector(".filtres");
-const imageVideoSection = document.querySelector(".imageVideoSection");
+const mediasSection = document.querySelector(".imageVideoSection");
 const sectionBaniere = document.querySelector(".photograph-header");
-const sectionBaniereDescription = document.querySelector(".photographe");
-
 const mediaFactory = new MediaFactory();
-var photographerTabImageVideo;
 
 
 //Obj Photographe
@@ -23,10 +21,10 @@ function createTemplate(media) {
 
     if (media.image) {
       const templatePhoto = mediaFactory.createMedia("photo");
-      imageVideoSection.appendChild(templatePhoto.render(media));
+      mediasSection.appendChild(templatePhoto.render(media));
     } else if (media.video) {
       const templateVideo = mediaFactory.createMedia("video");
-      imageVideoSection.appendChild(templateVideo.render(media));
+      mediasSection.appendChild(templateVideo.render(media));
     }
   }
   );
@@ -34,9 +32,8 @@ function createTemplate(media) {
 }
 
 
-
 function createTemplateBaniere(photographer) {
-  sectionBaniere.appendChild(photographerObj.templateBaniere());
+  sectionBaniere.appendChild(photographer.templateBaniere());
 }
 
 
@@ -46,17 +43,17 @@ select.addEventListener("change", function () {
   switch (selectedValue) {
     case "populaire":
       photographerObj.media.sort(decroissantLikes);
-      imageVideoSection.innerHTML = "";
+      mediasSection.innerHTML = "";
       createTemplate(photographerObj.media);
       break;
     case "date":
       photographerObj.media.sort(croissantDate);
-      imageVideoSection.innerHTML = "";
+      mediasSection.innerHTML = "";
       createTemplate(photographerObj.media);
       break;
     case "titre":
       photographerObj.media.sort(croissantTitre);
-      imageVideoSection.innerHTML = ""; //Renitialise a la fermeture.
+      mediasSection.innerHTML = ""; //Renitialise a la fermeture.
       createTemplate(photographerObj.media);
       break;
     default:
@@ -64,7 +61,6 @@ select.addEventListener("change", function () {
       break;
   }
 
-  console.log(photographerObj.media)
 });
 
 
@@ -72,7 +68,6 @@ function init() {
   createTemplateBaniere(photographerObj);
   createTemplate(photographerObj.media);
 }
-
 
 
 init();
