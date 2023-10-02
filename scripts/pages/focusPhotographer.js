@@ -11,7 +11,7 @@ import Photographer from '../classes/Photographer.js';
 const objetJSON = sessionStorage.getItem("objetData"); // Pour sessionStorage
 var photographerObj = JSON.parse(objetJSON);
 
-//Reinstanciation de l'objet pour recuper les fonction associe
+//Reinstanciation de l'objet pour recuper les fonctions associees
 photographerObj = new Photographer(photographerObj.name, photographerObj.id, photographerObj.city, photographerObj.country, photographerObj.tagline, photographerObj.price, photographerObj.portrait, photographerObj.media);
 
 

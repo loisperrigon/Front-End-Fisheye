@@ -62,7 +62,7 @@ class Photographer {
 
     openWindowPhotographer(photographer) {
         sessionStorage.setItem("objetData", JSON.stringify(photographer));  //Pour envoyer l'objet sur la nouvelle page
-        window.location.href = "focusPhotographer.html?idPhotographe=" + this.id;
+        window.location.href = "focusPhotographer.html";
     }
 
 }

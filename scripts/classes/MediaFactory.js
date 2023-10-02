@@ -10,6 +10,9 @@ class Template {
         this.videoImage = "";
         this.title = document.createElement('span');
         this.likes = document.createElement('span');
+        this.divLikes = document.createElement('div');
+        this.divTitreLikes = document.createElement('div');
+        this.coeur = document.createElement('i');
     }
 
     template() {
@@ -38,23 +41,20 @@ class Template {
         this.article.setAttribute("tabindex", element.index);
         this.videoImage.setAttribute("src", this.mediasRoot);
         this.videoImage.setAttribute("alt", element.title);
-        const divTitreLikes = document.createElement('div');
-        divTitreLikes.classList.add("titreLikes");
-        const divLikes = document.createElement('div');
-        divLikes.classList.add("likes");
-
+        this.divTitreLikes.classList.add("titreLikes");
+        this.divLikes = document.createElement('div');
+        this.divLikes.classList.add("likes");
         this.title.textContent = element.title;
         this.likes.textContent = element.likes;
-        divTitreLikes.appendChild(this.title);
-        divLikes.appendChild(this.likes);
-        const coeur = document.createElement('i');
-        coeur.classList.add("fa-solid", "fa-heart");
-        divLikes.appendChild(coeur);
-        this.addEventlikesclick(divLikes, this.likes, element);
+        this.divTitreLikes.appendChild(this.title);
+        this.divLikes.appendChild(this.likes);
+        this.coeur.classList.add("fa-solid", "fa-heart");
+        this.divLikes.appendChild(this.coeur);
+        this.addEventlikesclick(this.divLikes, this.likes, element);
         this.addEventClick(this.videoImage, element);
-        divTitreLikes.appendChild(divLikes);
+        this.divTitreLikes.appendChild(this.divLikes);
         this.article.appendChild(this.videoImage);
-        this.article.appendChild(divTitreLikes);
+        this.article.appendChild(this.divTitreLikes);
 
 
         return this.article;
