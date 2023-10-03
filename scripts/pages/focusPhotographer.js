@@ -17,7 +17,7 @@ photographerObj = new Photographer(photographerObj.name, photographerObj.id, pho
 
 function createTemplate(media) {
   media.forEach((media, index) => {
-    media.index = index;  //Rajout de l'index sur le media
+    media.index = index + 2;  //Car l'index commence a 2 pour la galerie media 1 etant la banierre
 
     if (media.image) {
       const templatePhoto = mediaFactory.createMedia("photo");
@@ -67,6 +67,7 @@ select.addEventListener("change", function () {
 function init() {
   createTemplateBaniere(photographerObj);
   createTemplate(photographerObj.media);
+  console.log(photographerObj.media)
 }
 
 

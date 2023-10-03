@@ -1,6 +1,5 @@
 import Photographer from '../classes/Photographer.js';
-
-
+let photographers = [];
 
 async function getPhotographers() {
   const jsonPath = 'data/photographers.json';
@@ -42,14 +41,6 @@ function displayData(photographers) {
     photographersSection.appendChild(element.templatePhotographes());
   });
 
-  //Ajout evenement au clic d'un photographe.
-
-  const photographeDom = document.querySelectorAll(".photographe");
-  tabPhotographe = photographeDom;
-  photographeDom.forEach((people, index) => {
-    people.addEventListener("click", () => photographers[index].openWindowPhotographer(photographers[index]));
-  });
-
 }
 
 
@@ -79,114 +70,69 @@ function lauchPhotographe(photographers) {
 function closePhotographe() {
 
   focusPhotographe.innerHTML = "";
-
   focusPhotographe.style.opacity = 0;
   photographersSection.style.filter = 'none';
 
 }
 
-
+function updatePhotographe(curentIndex, photographers) {
+  closePhotographe();
+  lauchPhotographe(photographers[curentIndex]);
+}
 
 document.addEventListener('keydown', function (event) {
-  switch (event.key) {
 
+  MAXPHOTOGRAPHER = photographers.length;
+
+  switch (event.key) {
     case 'Tab':
       event.preventDefault();
-      if (event.shiftKey) {
-        if (curentIndex > 0) {
-          // Lancez le photographe suivant
-          curentIndex -= 1;
-        }
-        else {
-          curentIndex = tabPhotographe.length - 1;
-        }
-        break
-      }
-      if (curentIndex < tabPhotographe.length - 1) {
-        // Lancez le photographe suivant
-        curentIndex += 1;
-      }
-      else {
-        curentIndex = 0;
-      }
+      curentIndex = event.shiftKey
+        ? (curentIndex > 0 ? curentIndex - 1 : MAXPHOTOGRAPHER - 1)
+        : (curentIndex < MAXPHOTOGRAPHER - 1 ? curentIndex + 1 : 0);
       break;
 
     case 'ArrowUp':
-      if (curentIndex >= 3) {
-        // Lancez le photographe suivant
-        curentIndex -= 3;
-      }
-      else {
-        i = 0 - curentIndex
-        if (i === 0) {
-          curentIndex = tabPhotographe.length - 3;
-        }
-        else if (i === -1) {
-          curentIndex = tabPhotographe.length - 2;
-        }
-        else {
-          curentIndex = tabPhotographe.length - 1;
-        }
-      }
-      break;
-    case 'ArrowDown':
-      if (curentIndex <= tabPhotographe.length - 4) {
-        // Lancez le photographe suivant
-        curentIndex += 3;
-      }
-      else {
-        i = tabPhotographe.length - curentIndex
-        if (i === 3) {
-          curentIndex = 0;
-        }
-        else if (i === 2) {
-          curentIndex = 1;
-        }
-        else {
-          curentIndex = 2;
-        }
-      }
+      curentIndex = curentIndex >= 3
+        ? curentIndex - 3
+        : (curentIndex === 0 ? MAXPHOTOGRAPHER - 3 : MAXPHOTOGRAPHER - 1);
       break;
 
+    case 'ArrowDown':
+      curentIndex = curentIndex <= MAXPHOTOGRAPHER - 4
+        ? curentIndex + 3
+        : (curentIndex === MAXPHOTOGRAPHER - 1 ? 0 : curentIndex + 1);
+      break;
 
     case 'ArrowRight':
-      if (curentIndex <= tabPhotographe.length - 2) {
-        // Lancez le photographe suivant
-        curentIndex += 1;
-      }
-      else {
-        curentIndex = 0;
-      }
+      curentIndex = curentIndex < MAXPHOTOGRAPHER - 1 ? curentIndex + 1 : 0;
       break;
 
     case 'ArrowLeft':
-      if (curentIndex > 0) {
-        // Lancez le photographe suivant.
-        curentIndex -= 1;
-      }
-      else {
-        curentIndex = tabPhotographe.length - 1;
-      }
+      curentIndex = curentIndex > 0 ? curentIndex - 1 : MAXPHOTOGRAPHER - 1;
       break;
 
     case 'Enter':
       if (curentIndex !== -1) {
-        openPageFocusPhotographe(tabPhotographe[curentIndex].getAttribute('id'));
+        photographers[curentIndex].openWindowPhotographer();
       }
+      break;
 
+    case 'Escape':
+      closePhotographe();
+      break;
   }
 
-  closePhotographe();
-  tabPhotographe[curentIndex].focus();
-  lauchPhotographe(photographers[curentIndex]);
-
+  // Appeler updatePhotographe uniquement si la touche n'était pas "Escape"
+  if (event.key !== 'Escape') {
+    updatePhotographe(curentIndex, photographers);
+  }
 });
+
 
 const photographersSection = document.querySelector(".photographerSection");
 const focusPhotographe = document.querySelector(".focusPhotographe");
 var curentIndex = -1;
-var tabPhotographe;
-var photographers = [];
 photographers = await init(photographers);
 
 

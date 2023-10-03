@@ -1,37 +1,54 @@
 import LightBox from './LightBox.js';
 
-const lightBox = new LightBox();
 
 class Template {
 
     constructor() {
-        this.mediasRoot = `assets/images/`;
+        this.pathMedia = `assets/images/`;
         this.article = document.createElement('article');
-        this.videoImage = "";
         this.title = document.createElement('span');
         this.likes = document.createElement('span');
         this.divLikes = document.createElement('div');
         this.divTitreLikes = document.createElement('div');
         this.coeur = document.createElement('i');
+        this.lightBox = new LightBox(); //Cree un instance de lightbox 
     }
 
     template() {
 
     }
 
+
     addEventlikesclick(divLikes, textContentLikes, element) {
 
-        divLikes.addEventListener('click', function () {
+        function incrementLikes() {
             element.likes += 1;
             textContentLikes.textContent = element.likes;
+        }
+
+        divLikes.addEventListener('keydown', (event) => {
+            incrementLikes();
+        });
+
+        divLikes.addEventListener('click', function () {
+            incrementLikes();
         });
 
     }
 
     addEventClick(videoImage, element) {
-        videoImage.addEventListener('click', function () {
-            lightBox.initLightBox(videoImage.cloneNode(true), element.title, element.index)
-            lightBox.affichageLightBox();
+
+        videoImage.addEventListener('keydown', (event) => {
+
+            if (event.key === 'Enter') {
+                this.lightBox.initialize(videoImage.cloneNode(true), element.title, element.index);
+                this.lightBox.affichageLightBox();
+            }
+        });
+
+        videoImage.addEventListener('click', () => {
+            this.lightBox.initialize(videoImage.cloneNode(true), element.title, element.index)
+            this.lightBox.affichageLightBox();
         });
     }
 
@@ -39,7 +56,8 @@ class Template {
         this.template(element);
         this.article.classList.add("videoPhoto");
         this.article.setAttribute("tabindex", element.index);
-        this.videoImage.setAttribute("src", this.mediasRoot);
+        this.videoImage.setAttribute("tabindex", element.index + 0.1);
+        this.videoImage.setAttribute("src", this.pathMedia);
         this.videoImage.setAttribute("alt", element.title);
         this.divTitreLikes.classList.add("titreLikes");
         this.divLikes = document.createElement('div');
@@ -50,6 +68,8 @@ class Template {
         this.divLikes.appendChild(this.likes);
         this.coeur.classList.add("fa-solid", "fa-heart");
         this.divLikes.appendChild(this.coeur);
+        this.title.setAttribute("tabindex", element.index + 0.2);
+        this.divLikes.setAttribute("tabindex", element.index + 0.3);
         this.addEventlikesclick(this.divLikes, this.likes, element);
         this.addEventClick(this.videoImage, element);
         this.divTitreLikes.appendChild(this.divLikes);
@@ -64,7 +84,7 @@ class Template {
 class TemplatePhoto extends Template {
     template(element) {
         this.videoImage = document.createElement('img');
-        this.mediasRoot += element.photographerId + "/" + element.image;
+        this.pathMedia += element.photographerId + "/" + element.image;
 
     }
 
@@ -78,7 +98,7 @@ class TemplateVideo extends Template {
         this.videoImage.autoplay = true;
         this.videoImage.loop = true;
         this.article.appendChild(this.videoImage);
-        this.mediasRoot += element.photographerId + "/" + element.video;
+        this.pathMedia += element.photographerId + "/" + element.video;
 
     }
 }
