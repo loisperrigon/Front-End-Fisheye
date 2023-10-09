@@ -11,11 +11,20 @@ export default class Photographer {
         this.path = `assets/photographers/${this.portrait}`;
         this.index = index;
         this.media = media;
-
+        this.likesTotal = this.calculeTotalLikesPhotographe();
         this.template = "";
         this.evenement = [];
     }
 
+    calculeTotalLikesPhotographe() {
+        let totalLikes = 0;
+        this.media.forEach(element => {
+            totalLikes += element.likes;
+        });
+        return totalLikes;
+    }
+
+    //composant remplacer template
     templateBaniere() {
         const tempElement = document.createElement('div');
         tempElement.classList.add("photographe");
@@ -25,7 +34,7 @@ export default class Photographer {
                 <h3>${this.city} ${this.country}</h3>
                 <h4>${this.tagline}</h4>
              </div>
-             <button tabindex=1.2 class="contact_button" onclick="displayModal()">Contactez-moi</button>
+             <button tabindex=1.2 class="contact_button">Contactez-moi</button>
              <img tabindex=1.3 src="${this.path}" alt="${this.name}">
             `;
         return tempElement;

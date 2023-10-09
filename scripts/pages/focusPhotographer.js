@@ -1,9 +1,18 @@
 import MediaFactory from '../classes/MediaFactory.js';
+import ModalContact from '../classes/ModalContact.js';
 
 const select = document.querySelector(".filtres");
 const mediasSection = document.querySelector(".imageVideoSection");
 const sectionBaniere = document.querySelector(".photograph-header");
+const titleContact = document.querySelector(".titreModal");
+//Stats bar
+const likesStatBar = document.querySelector(".likes");
+const priceStatBar = document.querySelector(".price");
+
+//Modal
 const mediaFactory = new MediaFactory();
+
+
 
 
 //Obj Photographe
@@ -13,7 +22,6 @@ var photographerObj = JSON.parse(objetJSON);
 
 //Reinstanciation de l'objet pour recuper les fonctions associees
 photographerObj = new Photographer(photographerObj.name, photographerObj.id, photographerObj.city, photographerObj.country, photographerObj.tagline, photographerObj.price, photographerObj.portrait, photographerObj.media);
-
 
 function createTemplate(media) {
   media.forEach((media, index) => {
@@ -34,6 +42,16 @@ function createTemplate(media) {
 
 function createTemplateBaniere(photographer) {
   sectionBaniere.appendChild(photographer.templateBaniere());
+}
+
+function createTemplateStatsBar(likesTotal, price) {
+  likesStatBar.textContent = `${likesTotal}`;
+
+  priceStatBar.textContent = `${price}€/jour`;
+}
+
+function createTemplateContact(name) {
+  var modalContact = new ModalContact(name);
 }
 
 
@@ -67,7 +85,8 @@ select.addEventListener("change", function () {
 function init() {
   createTemplateBaniere(photographerObj);
   createTemplate(photographerObj.media);
-  console.log(photographerObj.media)
+  createTemplateStatsBar(photographerObj.likesTotal, photographerObj.price);
+  createTemplateContact(photographerObj.name)
 }
 
 

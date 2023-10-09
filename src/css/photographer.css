@@ -17,6 +17,7 @@ body h1 {
 
 body {
   margin: 0 100px;
+  /* Style pour les éléments du formulaire (par exemple, inputs, boutons) */
 }
 body header img {
   width: 200px;
@@ -179,17 +180,88 @@ body #main .imageVideoFullScreen .imageVideoFullScreenNav .flecheGauche:hover {
 body #main .imageVideoFullScreen .title {
   margin: 0;
 }
-body #main #contact_modal {
-  display: none;
-}
-body #main #contact_modal .modal {
-  border-radius: 5px;
-  background-color: #DB8876;
-  width: 50%;
+body #main .photographeStatsBar {
+  position: fixed;
   display: flex;
+  bottom: 0;
+  right: 20px;
+  background-color: #ffffff;
+  padding: 10px;
+  width: auto;
+  text-align: center;
+  background-color: #DB8876;
+  color: #000000;
+  border-radius: 5px 5px 0 0;
+}
+body #main .photographeStatsBar .totalLikes {
+  font-weight: bold;
+  margin-right: 20px;
+}
+body #main .photographeStatsBar .price {
+  font-style: italic;
+}
+body #contact_modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 100;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 35px;
-  margin: auto;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  background-color: #DB8876;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 20px;
+  width: 80%;
+  max-width: 400px;
+}
+body header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  /* Espace entre le titre et le formulaire */
+  position: relative;
+}
+body header .closeModal {
+  position: fixed;
+  top: 30px;
+  right: 20px;
+  cursor: pointer;
+}
+body header .closeModal i {
+  font-size: 30px;
+  color: white;
+}
+body header h1 {
+  margin: 0;
+  /* Supprimer les marges par défaut */
+}
+body form {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 100%;
+}
+body form input[type=text],
+body form input[type=email],
+body form textarea {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+}
+body form input[type=submit] {
+  background-color: #901C1C;
+  /* Couleur du bouton */
+  color: #fff;
+  /* Couleur du texte du bouton */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 18px;
 }/*# sourceMappingURL=photographer.css.map */

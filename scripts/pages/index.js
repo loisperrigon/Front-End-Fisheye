@@ -82,7 +82,7 @@ function updatePhotographe(curentIndex, photographers) {
 
 document.addEventListener('keydown', function (event) {
 
-  MAXPHOTOGRAPHER = photographers.length;
+  var MAXPHOTOGRAPHER = photographers.length;
 
   switch (event.key) {
     case 'Tab':

@@ -2,7 +2,8 @@
 <html>
 
 <head>
-  <link href="scss/photographer.css" rel="stylesheet" type="text/css" />
+  <link href="src/css/photographer.css" rel="stylesheet" type="text/css" />
+  <!-- <link href="dist/photographer.min.css" rel="stylesheet" type="text/css" />-->
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
@@ -45,13 +46,35 @@
         <h1 class="title"></h1>
       </div>
     </div>
-  </main>
-  <div id="contact_modal">
-    <div class="modal">
-      <header>
-        <img src="assets/icons/close.svg" />
-      </header>
+    <div class="photographeStatsBar">
+      <div class="totalLikes">
+        <span class="likes"></span>
+        <i class="fa-solid fa-heart"></i>
+      </div>
+      <span class="price"></span>
     </div>
+  </main>
+
+  <div id="contact_modal">
+    <header>
+      <div class="closeModal">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+      <h1 class="titreModal">Contacter</h1>
+    </header>
+    <form action="traitement.php" method="post">
+      <!-- Champ de texte -->
+      <label for="prenom">Prenom :</label>
+      <input type="text" id="prenom" name="prenom" required>
+      <label for="Nom">Nom :</label>
+      <input type="text" id="Nom" name="Nom" required>
+      <label for="email">Email :</label>
+      <input type="text" id="email" name="email" required>
+      <label for="message">Votre message :</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+      <!-- Bouton de soumission -->
+      <input class="sendMessage" type="submit" value="Envoyer">
+    </form>
   </div>
   <script src="/scripts/utils/filtres.js"></script>
   <script src="/scripts/utils/contactForm.js"></script>

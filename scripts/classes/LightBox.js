@@ -12,7 +12,7 @@ export default class LightBox {
         this.medias = [];
         this.maxMedia = 0;
 
-        // Définissez des fonctions de rappel pour les gestionnaires d'événements
+        // Définissions des fonctions de rappel pour les gestionnaires d'événements
         this.closeClickHandler = () => this.closeLightBox();
         this.flecheDroiteClickHandler = () => this.flecheDroiteLightBox();
         this.flecheGaucheClickHandler = () => this.flecheGaucheLightBox();
@@ -26,7 +26,7 @@ export default class LightBox {
         this.medias = document.querySelectorAll(".videoPhoto");
         this.maxMedia = this.medias.length;
 
-        // Initialisez ici les propriétés qui nécessitent un élément réel du DOM
+        // Initialise ici les propriétés qui nécessitent un élément réel du DOM
         this.title = document.querySelector(".title");
         this.media = document.querySelector(".imageVideoFull");
         this.lightBox = document.querySelector(".imageVideoFullScreen");
@@ -34,7 +34,7 @@ export default class LightBox {
         this.flecheDroite = document.querySelector(".flecheDroite");
         this.flecheGauche = document.querySelector(".flecheGauche");
 
-        // Ajoutez ici les gestionnaires d'événements en utilisant les fonctions de rappel
+        // Ajout ici les gestionnaires d'événements en utilisant les fonctions de rappel
         this.close.addEventListener('click', this.closeClickHandler);
         this.flecheDroite.addEventListener('click', this.flecheDroiteClickHandler);
         this.flecheGauche.addEventListener('click', this.flecheGaucheClickHandler);
