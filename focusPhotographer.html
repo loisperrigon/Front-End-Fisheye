@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
-  <link href="src/css/photographer.css" rel="stylesheet" type="text/css" />
-  <!-- <link href="dist/photographer.min.css" rel="stylesheet" type="text/css" />-->
+  <link href="src/css/photographer.css" rel="stylesheet" type="text/css">
+  <!-- <link href="dist/photographer.min.css" rel="stylesheet" type="text/css" -->
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="assets/favicon.png">
-  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&amp;display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/c7bf673644.js" crossorigin="anonymous"></script>
-  <title>Fisheye - photographe </title>
+  <title>Fisheye - photographe</title>
 </head>
 
 <body>
   <header>
-    <img src="assets/images/logo.png" class="logo" />
+    <img src="assets/images/logo.png" class="logo" alt="Logo Fisheye">
   </header>
   <main id="main">
     <div class="photograph-header">
     </div>
     <div class="divFiltres">
-      <label tabindex="1.4" for="populaire">Trier par : </label>
-      <select tabindex="1.5" class="filtres">
+      <label for="choixFiltre" tabindex="1.4">Trier par :</label>
+      <select tabindex="1.5" id="choixFiltre" class="filtres">
         <option value="" selected disabled>Choisissez une option</option>
         <option value="populaire">Le plus populaire</option>
         <option value="date">Date</option>
@@ -43,15 +43,15 @@
         </div>
       </div>
       <div class="imageVideoFullScreenTitle">
-        <h1 class="title"></h1>
+        <h1 class="title">Title</h1>
       </div>
     </div>
-    <div class="photographeStatsBar">
+    <div tabindex="100" class="photographeStatsBar">
       <div class="totalLikes">
-        <span class="likes"></span>
+        <span tabindex="100.1" class="likes"></span>
         <i class="fa-solid fa-heart"></i>
       </div>
-      <span class="price"></span>
+      <span tabindex="100.2" class="price"></span>
     </div>
   </main>
 
@@ -60,28 +60,31 @@
       <div class="closeModal">
         <i class="fa-solid fa-xmark"></i>
       </div>
-      <h1 class="titreModal">Contacter</h1>
+      <h1 class="titreModal">Contacter </h1>
     </header>
-    <form action="traitement.php" method="post">
+    <form>
       <!-- Champ de texte -->
-      <label for="prenom">Prenom :</label>
-      <input type="text" id="prenom" name="prenom" required>
-      <label for="Nom">Nom :</label>
-      <input type="text" id="Nom" name="Nom" required>
+      <label for="prenom">Prénom :</label>
+      <input tabindex="1.21" type="text" id="prenom" name="prenom" autocomplete="given-name" required>
+
+      <label for="nom">Nom :</label>
+      <input tabindex="1.22" type="text" id="nom" name="nom" autocomplete="family-name" required>
+
       <label for="email">Email :</label>
-      <input type="text" id="email" name="email" required>
+      <input tabindex="1.23" type="email" id="email" name="email" autocomplete="email" required>
+
       <label for="message">Votre message :</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
+      <textarea tabindex="1.24" id="message" name="message" rows="5" autocomplete="off" required></textarea>
+
       <!-- Bouton de soumission -->
-      <input class="sendMessage" type="submit" value="Envoyer">
+      <input tabindex="1.25" class="sendMessage" type="submit" value="Envoyer">
     </form>
+
   </div>
   <script src="/scripts/utils/filtres.js"></script>
-  <script src="/scripts/utils/contactForm.js"></script>
   <script type="module" src="/scripts/classes/lightBox.js"></script>
   <script type="module" src="/scripts/classes/MediaFactory.js"></script>
   <script type="module" src="/scripts/pages/focusPhotographer.js"></script>
-
 </body>
 
 </html>

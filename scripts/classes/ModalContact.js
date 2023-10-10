@@ -12,23 +12,58 @@ export default class ModalContact {
         this.boutonContact.addEventListener('click', this.openModal.bind(this));
         this.boutonSend.addEventListener('click', this.sendMessage.bind(this));
         this.close.addEventListener('click', this.closeModal.bind(this));
+
+        document.querySelector("form").addEventListener("submit", this.preventDefault.bind(this));
     }
+
+    preventDefault(event) {
+        event.preventDefault(); // Empêche la soumission du formulaire par défaut
+    }
+
 
 
     openModal() {
         this.modal.style.display = "flex";
+        document.getElementById("prenom").focus();
     }
 
     closeModal() {
         this.modal.style.display = "none";
+        document.querySelector(".contact_button").focus();
     }
 
     sendMessage() {
 
-        console.log("Prenom: ");
-        console.log("Nom: ");
-        console.log("Email: ");
-        console.log("Message:");
+        var prenom = document.getElementById("prenom").value;
+        var nom = document.getElementById("nom").value;
+        var email = document.getElementById("email").value;
+        var message = document.getElementById("message").value;
 
+        if (prenom === "" || nom === "" || email === "" || message === "") {
+            alert("Veuillez remplir tous les champs obligatoires.");
+            return; // Ne soumettez pas le formulaire si des champs sont vides
+        }
+
+        if (this.validateForm() === false) {
+            return;
+        }
+
+        console.log("Prénom : " + prenom);
+        console.log("Nom : " + nom);
+        console.log("Email : " + email);
+        console.log("Message : " + message);
+        this.closeModal();
+
+    }
+
+    validateForm() {
+        var email = document.getElementById("email").value;
+        var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        if (!emailPattern.test(email)) {
+
+            alert("Veuillez entrer une adresse e-mail valide.");
+            return false;
+        }
+        return true;
     }
 }

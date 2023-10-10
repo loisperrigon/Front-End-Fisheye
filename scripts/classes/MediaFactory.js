@@ -20,20 +20,21 @@ class Template {
 
 
     addEventlikesclick(divLikes, textContentLikes, element) {
-
         function incrementLikes() {
             element.likes += 1;
             textContentLikes.textContent = element.likes;
         }
 
         divLikes.addEventListener('keydown', (event) => {
-            incrementLikes();
+            // Vérifie si la touche pressée est différente de la touche "Tab"
+            if (event.key === 'Enter') {
+                incrementLikes();
+            }
         });
 
         divLikes.addEventListener('click', function () {
             incrementLikes();
         });
-
     }
 
     addEventClick(videoImage, element) {
