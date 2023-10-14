@@ -1,6 +1,6 @@
 export default class ModalContact {
     constructor(name) {
-        this.modal = document.getElementById("contact_modal");
+        this.modal = document.getElementById("contactModal");
         this.titleContact = document.querySelector(".titreModal");
         this.name = name;
         this.titleContact.textContent += this.name;

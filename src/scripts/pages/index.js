@@ -1,24 +1,9 @@
 import Photographer from '../classes/Photographer.js';
+import DataManager from '../classes/DataManager.js';
+
+var dataManager = new DataManager();
+
 let photographers = [];
-
-async function getPhotographers() {
-  const jsonPath = 'data/photographers.json';
-
-  try {
-    const response = await fetch(jsonPath);
-
-    if (!response.ok) {
-      throw new Error('La requête a échoué avec un statut ' + response.status);
-    }
-    else {
-      const data = await response.json();
-      return data; // Retourne les donnees
-    }
-  } catch (error) {
-    console.error('Une erreur s\'est produite:', error);
-    return []; // Retourne un tableau vide en cas d'erreur
-  }
-}
 
 
 function createObjPhotographers(data) {
@@ -26,9 +11,9 @@ function createObjPhotographers(data) {
   var media = [];
   data.photographers.forEach((element) => {  //On prend juste les donnees des photographers
     media = data.media.filter(elementMedia => elementMedia.photographerId === parseInt(element.id)); //On recupere les medias des photographers
-    photographers.push(new Photographer(element.name, element.id, element.city, element.country, element.tagline, element.price, element.portrait, media));
+    var photographer = new Photographer(element.name, element.id, element.city, element.country, element.tagline, element.price, element.portrait, media)
+    photographers.push(photographer);
   });
-
 
   return photographers;
 }
@@ -47,7 +32,7 @@ function displayData(photographers) {
 async function init(photographers) {
   try {
     // Récupère les datas des photographes
-    const data = await getPhotographers();
+    const data = await dataManager.getData();
     photographers = createObjPhotographers(data);
     displayData(photographers);
 

@@ -1,6 +1,6 @@
 export default class Photographer {
 
-    constructor(name, id, city, country, tagline, price, portrait, media, index = 0) {
+    constructor(name, id, city, country, tagline, price, portrait, media = [], index = 0) {
         this.name = name;
         this.id = id;
         this.city = city;
@@ -75,8 +75,8 @@ export default class Photographer {
     }
 
     openWindowPhotographer() {
-        sessionStorage.setItem("objetData", JSON.stringify(this));  //Pour envoyer l'objet sur la nouvelle page
-        window.location.href = "focusPhotographer.html";
+        localStorage.setItem("objetData", JSON.stringify(this));  // Pour envoyer l'objet sur la nouvelle page
+        window.location.href = "focusPhotographer.html?id=" + this.id;
     }
 
 }

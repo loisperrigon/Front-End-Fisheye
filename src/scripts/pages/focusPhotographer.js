@@ -1,10 +1,12 @@
 import MediaFactory from '../classes/MediaFactory.js';
 import ModalContact from '../classes/ModalContact.js';
+import Photographer from '../classes/Photographer.js';
+import DataManager from '../classes/DataManager.js';
 
 const select = document.querySelector(".filtres");
 const mediasSection = document.querySelector(".imageVideoSection");
 const sectionBaniere = document.querySelector(".photograph-header");
-const titleContact = document.querySelector(".titreModal");
+
 //Stats bar
 const likesStatBar = document.querySelector(".likes");
 const priceStatBar = document.querySelector(".price");
@@ -12,16 +14,35 @@ const priceStatBar = document.querySelector(".price");
 //Modal
 const mediaFactory = new MediaFactory();
 
+//Bdd requete etc..
+var dataManager = new DataManager();
 
-
-
-//Obj Photographe
-import Photographer from '../classes/Photographer.js';
-const objetJSON = sessionStorage.getItem("objetData"); // Pour sessionStorage
-var photographerObj = JSON.parse(objetJSON);
+var photographerObj //Variable Globale Objet photographe
 
 //Reinstanciation de l'objet pour recuper les fonctions associees
-photographerObj = new Photographer(photographerObj.name, photographerObj.id, photographerObj.city, photographerObj.country, photographerObj.tagline, photographerObj.price, photographerObj.portrait, photographerObj.media);
+
+
+async function getPhotographer() {
+  const objetJSON = localStorage.getItem("objetData"); // Pour une local session
+
+  //Si les donnees sont deja stocker dans une local session
+  if (objetJSON !== null) {
+    var element = JSON.parse(objetJSON);
+
+    return new Photographer(element.name, element.id, element.city, element.country, element.tagline, element.price, element.portrait, element.media);
+  } else {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = parseInt(urlParams.get('id'));
+
+
+    var data = await dataManager.getData();
+    const photographer = data.photographers.find(photographer => photographer.id === id);
+    const media = data.media.filter(media => media.photographerId === id);
+
+    return new Photographer(photographer.name, photographer.id, photographer.city, photographer.country, photographer.tagline, photographer.price, photographer.portrait, media);
+  }
+
+}
 
 function createTemplate(media) {
   media.forEach((media, index) => {
@@ -82,7 +103,8 @@ select.addEventListener("change", function () {
 });
 
 
-function init() {
+async function init() {
+  photographerObj = await getPhotographer();
   createTemplateBaniere(photographerObj);
   createTemplate(photographerObj.media);
   createTemplateStatsBar(photographerObj.likesTotal, photographerObj.price);

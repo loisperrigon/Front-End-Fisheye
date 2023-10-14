@@ -82,18 +82,11 @@ body {
 
             .filtres {
                 background-color: $primary-color;
-                /* Couleur de fond rouge */
                 color: white;
-                /* Texte en blanc */
                 padding: 8px;
-                /* Marge intérieure pour un aspect esthétique */
                 border: none;
-                /* Supprimez la bordure par défaut */
                 border-radius: 4px;
-                /* Ajoutez des coins arrondis */
                 font-size: 16px;
-                /* Taille de police */
-
             }
         }
 
@@ -238,7 +231,7 @@ body {
     }
 
 
-    #contact_modal {
+    #contactModal {
         display: none;
         position: fixed;
         top: 50%;

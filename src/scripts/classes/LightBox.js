@@ -75,7 +75,6 @@ export default class LightBox {
     }
 
     flecheDroiteLightBox() {
-        console.log(this.medias.length);
         if (this.index + 1 < this.maxMedia + 2) {  //car l'index commence a 2 pour les medias
             this.index += 1;
             this.flecheLightbox()
