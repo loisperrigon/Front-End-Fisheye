@@ -60,46 +60,47 @@ function closePhotographe() {
 
 }
 
-function updatePhotographe(curentIndex, photographers) {
+function updatePhotographe(currentIndex, photographers) {
   closePhotographe();
-  lauchPhotographe(photographers[curentIndex]);
+  lauchPhotographe(photographers[currentIndex]);
 }
 
 document.addEventListener('keydown', function (event) {
-
   var MAXPHOTOGRAPHER = photographers.length;
+
+  var colCount = 3; // nombre de colone
 
   switch (event.key) {
     case 'Tab':
       event.preventDefault();
-      curentIndex = event.shiftKey
-        ? (curentIndex > 0 ? curentIndex - 1 : MAXPHOTOGRAPHER - 1)
-        : (curentIndex < MAXPHOTOGRAPHER - 1 ? curentIndex + 1 : 0);
+      currentIndex = event.shiftKey
+        ? (currentIndex - 1 < 0 ? MAXPHOTOGRAPHER - 1 : currentIndex - 1)
+        : (currentIndex + 1 >= MAXPHOTOGRAPHER ? 0 : currentIndex + 1);
       break;
 
     case 'ArrowUp':
-      curentIndex = curentIndex >= 3
-        ? curentIndex - 3
-        : (curentIndex === 0 ? MAXPHOTOGRAPHER - 3 : MAXPHOTOGRAPHER - 1);
+      currentIndex = currentIndex - colCount < 0
+        ? MAXPHOTOGRAPHER - (colCount - (currentIndex % colCount))
+        : currentIndex - colCount;
       break;
 
     case 'ArrowDown':
-      curentIndex = curentIndex <= MAXPHOTOGRAPHER - 4
-        ? curentIndex + 3
-        : (curentIndex === MAXPHOTOGRAPHER - 1 ? 0 : curentIndex + 1);
+      currentIndex = currentIndex + colCount >= MAXPHOTOGRAPHER
+        ? currentIndex % colCount
+        : currentIndex + colCount;
       break;
 
     case 'ArrowRight':
-      curentIndex = curentIndex < MAXPHOTOGRAPHER - 1 ? curentIndex + 1 : 0;
+      currentIndex = currentIndex + 1 >= MAXPHOTOGRAPHER ? 0 : currentIndex + 1;
       break;
 
     case 'ArrowLeft':
-      curentIndex = curentIndex > 0 ? curentIndex - 1 : MAXPHOTOGRAPHER - 1;
+      currentIndex = currentIndex - 1 < 0 ? MAXPHOTOGRAPHER - 1 : currentIndex - 1;
       break;
 
     case 'Enter':
-      if (curentIndex !== -1) {
-        photographers[curentIndex].openWindowPhotographer();
+      if (currentIndex !== -1) {
+        photographers[currentIndex].openWindowPhotographer();
       }
       break;
 
@@ -110,14 +111,15 @@ document.addEventListener('keydown', function (event) {
 
   // Appeler updatePhotographe uniquement si la touche n'était pas "Escape"
   if (event.key !== 'Escape') {
-    updatePhotographe(curentIndex, photographers);
+    updatePhotographe(currentIndex, photographers);
   }
 });
 
 
+
 const photographersSection = document.querySelector(".photographerSection");
 const focusPhotographe = document.querySelector(".focusPhotographe");
-var curentIndex = -1;
+var currentIndex = -1;
 photographers = await init(photographers);
 
 

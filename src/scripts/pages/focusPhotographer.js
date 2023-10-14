@@ -5,7 +5,7 @@ import DataManager from '../classes/DataManager.js';
 
 const select = document.querySelector(".filtres");
 const mediasSection = document.querySelector(".imageVideoSection");
-const sectionBaniere = document.querySelector(".photograph-header");
+const baniereSection = document.querySelector(".photograph-header");
 
 //Stats bar
 const likesStatBar = document.querySelector(".likes");
@@ -17,7 +17,7 @@ const mediaFactory = new MediaFactory();
 //Bdd requete etc..
 var dataManager = new DataManager();
 
-var photographerObj //Variable Globale Objet photographe
+var photographerObj //Variable Globale Objet photographe pour pouvoir utiliser la variable dans les evenements
 
 //Reinstanciation de l'objet pour recuper les fonctions associees
 
@@ -62,7 +62,7 @@ function createTemplate(media) {
 
 
 function createTemplateBaniere(photographer) {
-  sectionBaniere.appendChild(photographer.templateBaniere());
+  baniereSection.appendChild(photographer.templateBaniere());
 }
 
 function createTemplateStatsBar(likesTotal, price) {
