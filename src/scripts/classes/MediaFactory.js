@@ -12,28 +12,46 @@ class Template {
         this.divTitreLikes = document.createElement('div');
         this.coeur = document.createElement('i');
         this.lightBox = new LightBox(); //Cree un instance de lightbox 
+        this.increment = false;
+
+        this.statsBarLikes = document.querySelector(".likesTotal");
     }
 
     template() {
 
     }
 
+    incrementLikesStatsbar(increment) {
+        this.statsBarLikes.textContent = parseInt(this.statsBarLikes.textContent) + increment;
+    }
+
+    incrementLikesMedia(textContentLikes, element) {
+        if (this.increment === false) {
+            this.increment = true;
+            element.likes += 1;
+            this.incrementLikesStatsbar(1);
+        }
+        else {
+            this.increment = false;
+            element.likes -= 1;
+            this.incrementLikesStatsbar(-1);
+        }
+
+        textContentLikes.textContent = element.likes;
+    }
+
 
     addEventlikesclick(divLikes, textContentLikes, element) {
-        function incrementLikes() {
-            element.likes += 1;
-            textContentLikes.textContent = element.likes;
-        }
 
         divLikes.addEventListener('keydown', (event) => {
             // Vérifie si la touche pressée est différente de la touche "Tab"
             if (event.key === 'Enter') {
-                incrementLikes();
+                this.incrementLikesMedia(textContentLikes, element);
             }
         });
 
-        divLikes.addEventListener('click', function () {
-            incrementLikes();
+        divLikes.addEventListener('click', () => {
+            this.incrementLikesMedia(textContentLikes, element);
         });
     }
 

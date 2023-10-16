@@ -74,13 +74,13 @@ document.addEventListener('keydown', function (event) {
     case 'Tab':
       event.preventDefault();
       currentIndex = event.shiftKey
-        ? (currentIndex - 1 < 0 ? MAXPHOTOGRAPHER - 1 : currentIndex - 1)
-        : (currentIndex + 1 >= MAXPHOTOGRAPHER ? 0 : currentIndex + 1);
+        ? (currentIndex - 1 < 0 ? MAXPHOTOGRAPHER - 1 : currentIndex - 1) // Si current index est inferieur a zero  alors on revient tout en haut du tableau
+        : (currentIndex + 1 >= MAXPHOTOGRAPHER ? 0 : currentIndex + 1);  // Si current index est superieur ou egal a MAXPHOTOGRAPHER alors on revient en bas du tableau
       break;
 
     case 'ArrowUp':
       currentIndex = currentIndex - colCount < 0
-        ? MAXPHOTOGRAPHER - (colCount - (currentIndex % colCount))
+        ? MAXPHOTOGRAPHER - (colCount - (currentIndex % colCount)) // Si l'utilisateur appuie sur la touche "ArrowUp", le code calcule la nouvelle position currentIndex en soustrayant un certain nombre d'éléments équivalents à la différence entre colCount et le reste de la division de currentIndex par colCount.currentIndex % colCount: Cela donne le reste de la division de currentIndex par colCount, ce qui vous indique l'indice de la colonne actuelle. Par exemple, si currentIndex est 7 et colCount est 3, alors currentIndex % colCount est égal à 1, car 7 divisé par 3 donne un reste de 1.
         : currentIndex - colCount;
       break;
 

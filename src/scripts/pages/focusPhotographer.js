@@ -8,7 +8,7 @@ const mediasSection = document.querySelector(".imageVideoSection");
 const baniereSection = document.querySelector(".photograph-header");
 
 //Stats bar
-const likesStatBar = document.querySelector(".likes");
+const likesStatBar = document.querySelector(".likesTotal");
 const priceStatBar = document.querySelector(".price");
 
 //Modal
@@ -48,13 +48,14 @@ function createTemplate(media) {
   media.forEach((media, index) => {
     media.index = index + 2;  //Car l'index commence a 2 pour la galerie media 1 etant la banierre
 
+    var template;
     if (media.image) {
-      const templatePhoto = mediaFactory.createMedia("photo");
-      mediasSection.appendChild(templatePhoto.render(media));
+      template = mediaFactory.createMedia("photo");
     } else if (media.video) {
-      const templateVideo = mediaFactory.createMedia("video");
-      mediasSection.appendChild(templateVideo.render(media));
+      template = mediaFactory.createMedia("video");
     }
+
+    mediasSection.appendChild(template.render(media));
   }
   );
 
